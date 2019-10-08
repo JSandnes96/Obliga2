@@ -296,27 +296,33 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public void nullstill() {
         //1
-        Node<T> p = hode;
-        Node<T> q = null;
+        /*
+        Node<T> p = hode; //hjelpevariabel
+        Node<T> q = null; //hjelpevariabel
 
-        while (p != null){
+        while (p != null){ //kjorer gjennom saalenge hode ikke = 0
             q = p.neste;
             p.neste = null;
             p.verdi = null;
             p = q;
         }
 
-        endringer++;
+        endringer++; //oker antall endringer
 
-        hode = hale = null;
-        antall = 0;
+        hode = hale = null; //naar den er tom er baade hode og hale lik null
+        antall = 0; //naar den er tom er det 0 elementer i lista. */
 
 
-        //2
-        /*
-        for (int i = 0; i < antall; i++){
+        //2 Denne metoden var mest tidseffektiv
+
+        for (int i = 0; i < antall; i++){ //lokke som kjorer gjennom og fjerner det som ligger i lista med indeks = i
             fjern(i);
-        }*/
+        }
+
+        endringer++; //oker antall endringer
+        hode = hale = null; //naar den er tom er baade hode og hale lik null
+        antall = 0; //naar den er tom er det 0 elementer i lista.
+
     }
 
     @Override
