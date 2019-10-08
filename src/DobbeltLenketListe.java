@@ -3,13 +3,8 @@
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import java.util.Comparator;
-import java.util.ConcurrentModificationException;
-import java.util.NoSuchElementException;
-import java.util.StringJoiner;
+import java.util.*;
 
-import java.util.Iterator;
-import java.util.Objects;
 import java.util.function.Predicate;
 
 
@@ -80,7 +75,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         if (til > antall)                          // til er utenfor tabellen
             throw new IndexOutOfBoundsException
-                    ("til(" + til + ") > tablengde(" + antall + ")");
+                    ("til(" + til + ") > antall (" + antall + ")");
 
         if (fra > til)                                // fra er større enn til
             throw new IllegalArgumentException
@@ -89,7 +84,14 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
 
     public Liste<T> subliste(int fra, int til){
-        throw new NotImplementedException();
+        fratilKontroll(antall,fra,til);
+
+        DobbeltLenketListe<T> liste = new DobbeltLenketListe<>();
+        for (int i = fra; i < til ; i++){
+            liste.leggInn(this.hent(i));
+        }
+        return liste;
+
     }
 
     @Override
@@ -121,6 +123,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     private Node<T> finnNode(int indeks) {
 
+
         Node<T> p = hode;
         Node<T> q = hale;
 
@@ -128,12 +131,15 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             for (int i = 0; i < indeks; i++) {
                 p = p.neste;
             }
-        } else {
-            for (int i = antall; i == indeks; i--) {
+            return p;
+        }
+        else {
+            for (int i = antall-1; i == indeks-1; i--) {
                 q = q.forrige;
             }
+            return q;
         }
-        return p;
+
 
         //FUNKER:
         /*Node<T> p = hode;
@@ -343,6 +349,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public String omvendtString() {
+
         Node p = hale;
         StringBuilder s = new StringBuilder();
         s.append("[");
@@ -461,7 +468,18 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     } // class DobbeltLenketListeIterator
 
     public static <T> void sorter(Liste<T> liste, Comparator<? super T> c) {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+
+        //DobbeltLenketListe<T> a = new DobbeltLenketListe<>();
+
+        for(int i = 0; i < liste.antall(); i++){
+            T verdi = liste.hent(i);
+            liste.oppdater(i, verdi);
+        }
+
+        Collections.sort(liste, i);
+
+
     }
 
 } // class DobbeltLenketListe
