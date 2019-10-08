@@ -283,11 +283,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public Iterator<T> iterator() {
-        throw new NotImplementedException();
+        return new DobbeltLenketListeIterator();
     }
 
     public Iterator<T> iterator(int indeks) {
-        throw new NotImplementedException();
+        indeksKontroll(indeks, false);
+        return new DobbeltLenketListeIterator(indeks);
     }
 
     private class DobbeltLenketListeIterator implements Iterator<T>
@@ -297,26 +298,87 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         private int iteratorendringer;
 
         private DobbeltLenketListeIterator(){
-            throw new NotImplementedException();
+
+            denne = hode; //p starter på den første i listen
+            fjernOK = false; //blir sann når next() kalles
+            iteratorendringer = endringer; //teller endringer
         }
 
         private DobbeltLenketListeIterator(int indeks){
-            throw new NotImplementedException();
+
+            for(int i = 1; i == indeks; i++){
+                denne = denne.neste;
+            }
+
+            fjernOK = false; //blir sann når next() kalles
+            iteratorendringer = endringer; //teller endringer
         }
 
         @Override
         public boolean hasNext(){
-            throw new NotImplementedException();
+            return denne != null;
         }
 
         @Override
         public T next(){
-            throw new NotImplementedException();
+
+            if(iteratorendringer != endringer){
+                throw new ConcurrentModificationException("iteratorendringer er ulik endringer");
+            }
+
+            if (!hasNext()){
+                throw new NoSuchElementException("Ingen verdier!");
+            }
+
+            fjernOK = true;            // nå kan remove() kalles
+            T denneVerdi = denne.verdi;    // tar vare på verdien i p
+            denne = denne.neste;               // flytter p til den neste noden
+
+            return denneVerdi;         // returnerer verdien
         }
 
         @Override
         public void remove(){
-            throw new NotImplementedException();
+
+            if(!fjernOK){
+                throw new IllegalStateException("Du kan ikke kalle denne metoden");
+            }
+
+            if(iteratorendringer != endringer){
+                throw new ConcurrentModificationException("iteratorendringer er ulik endringer");
+            }
+
+            fjernOK = false; //remove kan ikke kalles på nytt
+
+            Node<T> q = hode; //hjelpevariabel
+
+            if(hode.neste == denne){
+                hode = hode.neste; //den første fjernes
+                if(denne == null){
+                    hale = null; //dette var den eneste noden
+                }
+            }
+
+            else{
+
+                Node<T> r = hode; //må finne forgjengeren til denne
+
+                while(r.neste.neste != denne){
+                    r = r.neste; //flytter r
+                }
+
+                q = r.neste; //q skal fjernes
+                r.neste = denne; //hopper over q
+
+                if(denne == null){
+                    hale = r; //q var her den siste
+                }
+            }
+
+            q.verdi = null; //nuller verdien i noden
+            q.neste = null; //nuller nestereferansen
+
+            antall--;
         }
 
     } // class DobbeltLenketListeIterator
