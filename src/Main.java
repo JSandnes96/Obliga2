@@ -5,18 +5,13 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String[] navn = {"Lars","Anders","Bodil","Kari","Per","Berit"};
+        DobbeltLenketListe<String> liste =
+                new DobbeltLenketListe<>(new String[]
+                        {"Birger","Lars","Anders","Bodil","Kari","Per","Berit"});
 
-        Liste<String> liste1 = new DobbeltLenketListe<>(navn);
-        //Liste<String> liste2 = new TabellListe<>(navn);
-        //Liste<String> liste3 = new EnkeltLenketListe<>(navn);
+        liste.fjernHvis(navn -> navn.charAt(0) == 'B'); // fjerner navn som starter med B
 
-
-        DobbeltLenketListe.sorter(liste1, Comparator.naturalOrder());
-
-        System.out.println(liste1);
-
-        System.out.println(Arrays.toString(navn));
+        System.out.println(liste + " " + liste.omvendtString());
 
 
     }
