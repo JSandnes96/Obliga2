@@ -1,0 +1,20 @@
+Resultatet av testene:
+
+Oppgave 10d: Feil for listen C, B, A!
+Oppgave 10e: Feil for listen G, B, F, C, E, D, A!
+Oppgave 10f: Metoden sorterer feil!
+Oppgave 3a: Dette (2682 ms) gikk altfor sakte!
+            Har du kodet metoden finnNode() riktig?
+Oppgave 6j: Feil i fjern(indeks)-metoden!
+Oppgave 6zg: Ineffektiv kode! Har du kodet den ene fjern-metoden
+ved hjelp av den andre? Eller så er en av fjern-metodene dine litt treg.
+
+Som du ser kjører ikke alle testene. 
+Test 3a kommer nok blant annet av at jeg ikke har fått finnNode() metoden til å fungere slik den skal. 
+Jeg har ikke fått den til å ta antall/2 og starte enten fra start eller slutt ut fra dette. Dermed vil den alltid kjøre gjennom løkka fra starten av noe som kan ta lenger tid enn nødvendig.
+
+6j) er jeg usikker på hva som er feil.
+
+6zg) En av tingene som gjør at koden blir treg her, er nok at den bruker finnNode() metoden, som jeg allerede vet at er for treg basert på test 3a.
+
+10 d-f) Har ikke fått til å sortere.
