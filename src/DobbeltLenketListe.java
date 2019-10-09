@@ -208,8 +208,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T hent(int indeks) {
+
         indeksKontroll(indeks, false);  // Se Liste, false: indeks = antall er ulovlig
         return finnNode(indeks).verdi; //returnerer verdien til noden som skal hentes, vha finnNode-metoden
+
     }
 
     @Override
@@ -231,9 +233,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T oppdater(int indeks, T nyverdi) {
-        Objects.requireNonNull(nyverdi, "Ikke tillatt med null-verdier!"); //sjekker for 0-verdier
 
         indeksKontroll(indeks, false);
+
+        Objects.requireNonNull(nyverdi, "Ikke tillatt med null-verdier!"); //sjekker for 0-verdier
 
         Node<T> p = finnNode(indeks); //setter noden p til den noden som skal fjernes
         T gammelVerdi = p.verdi; //oppretter en variabel gammelverdi og setter denne lik p.verdi
@@ -242,6 +245,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         endringer++; //antall endringer okes
         return gammelVerdi; //returnerer gammelverdi
+
+
     }
 
     @Override
