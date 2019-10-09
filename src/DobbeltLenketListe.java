@@ -7,7 +7,8 @@ import java.util.*;
 
 import java.util.function.Predicate;
 
-
+//Student Jørgen Sandnes
+//Studentnummer s331423
 
 public class DobbeltLenketListe<T> implements Liste<T> {
 

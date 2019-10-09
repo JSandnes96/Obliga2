@@ -2,14 +2,11 @@
 
 Denne oppgaven er en innlevering i Algoritmer og Datastrukturer. 
 Oppgaven er levert av følgende studenter:
-* Navn Navnesen, S981737, s981737@oslomet.no
-* ...
+* Jørgen Sandnes, S331423, s331423@oslomet.no
 
-# Arbeidsfordeling
+I starten av dette repositoryet ble det lagt inn veldig mye kode på en gang.
+Dette var fordi jeg hadde et annet repository jeg jobbet i først, det jeg hadde gjort mye allerede.
+I dette ble det mye surr, og derfor lagde jeg et nytt et og kopierte over hit.
+Jeg kan invitere deg til det andre repositoryet dersom det er ønskelig.
 
-I oppgaven har vi hatt følgende arbeidsfordeling:
-* Per har hatt hovedansvar for oppgave 1, 3, og 5. 
-* Else har hatt hovedansvar for oppgave 2, 4, og 6. 
-* Fatima har hatt hovedansvar for oppgave 7 og 8. 
-* Vi har i fellesskap løst oppgave 10. 
 
